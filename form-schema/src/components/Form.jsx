@@ -8,7 +8,6 @@ const GENDER_OPTION = [
   { text: "Other", value: "other" },
 ];
 
-
 var emailValidation =
   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -16,11 +15,11 @@ const schema = yup
   .object({
     firstName: yup.string().required("First Name Must be required"),
     lastName: yup.string().required("Last Name Must be Required"),
-    gender: yup
-      .string()
-      .required("Gender Must be Required"),
+    gender: yup.string().required("Gender Must be Required"),
     // email: yup.string().email().required("Email Must be required"),
-    email: yup.string().matches(emailValidation, "Email Must be like : example@gmail.com"),
+    email: yup
+      .string()
+      .matches(emailValidation, "Email Must be like : example@gmail.com"),
     phone: yup
       .number()
       .typeError("That doesn't look like a phone number")
