@@ -33,24 +33,54 @@ const App = () => {
         <br />
         <div>
           <label> Middle Name: </label>
-          <input {...register("middleName", { required: true })} />
+          <input
+            className={errors.middleName ? "input-error" : ""}
+            {...register("middleName", { required: true })}
+          />
         </div>
+        {errors.firstName && (
+          <p className="error-msg">{errors.middleName.message}</p>
+        )}
         <br />
         <div>
           <label> Last Name: </label>
           <input
             className={errors.lastName ? "input-error" : ""}
-            {...register("lastName", {
-              pattern: {
-                value: /^[A-Za-z]+$/i,
-                message: "Last name is not as per the rules",
-              },
-            })}
+            {...register(
+              "lastName",
+              {
+                required: true,
+                pattern: {
+                  value: /^[A-Za-z]+$/i,
+                  message: "Last name is not as per the rules",
+                },
+              }
+            )}
           />
           {errors.lastName && (
             <p className="error-msg">{errors.lastName.message}</p>
           )}
         </div>
+
+        <br />
+        <div>
+          <label>Age:</label>
+          <input
+            type="number"
+            className={errors.age ? "input-error" : ""}
+            {...register(
+              "age",
+              {
+                required:true,
+                min: { value: 18, message: "Age must Greater than 18." },
+                max: { value: 99, message: "Age must be Less than 99" },
+              }
+            )}
+          />
+          {errors.age && <p className="error-msg">{errors.age.message}</p>}
+        </div>
+
+        
         <br />
         <button type="submit" disabled={isSubmitting}>
           {isSubmitting ? "Submitting" : "Submit"}
