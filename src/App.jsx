@@ -118,6 +118,37 @@ const App = () => {
           )}
         </div>
 
+        {/* <div>
+          <label>Title</label>
+          <select name="Title" {...register({ required: true })}>
+            <option value="Mr">Mr</option>
+            <option value="Mrs">Mrs</option>
+            <option value="Miss">Miss</option>
+            <option value="Dr">Dr</option>
+          </select>
+        </div> */}
+
+        <div>
+          <label>Title</label>
+          <select
+            name="title"
+            id=""
+            className={errors.title ? "input-error" : ""}
+            {...register("title", { required: true })}
+            defaultValue=""
+          >
+            <option value="" disabled hidden>
+              Select Title
+            </option>
+            <option value="Mr">Mr</option>
+            <option value="Mrs">Mrs</option>
+            <option value="Miss">Miss</option>
+            <option value="Dr">Dr</option>
+          </select>
+
+          {errors.title && <p className="error-msg">{errors.title.message}</p>}
+        </div>
+
         <button type="submit" disabled={isSubmitting}>
           {isSubmitting ? "Submitting" : "Submit"}
         </button>
