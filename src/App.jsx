@@ -73,7 +73,7 @@ const App = () => {
           />
           {errors.age && <p className="error-msg">{errors.age.message}</p>}
         </div>
-          <br />
+        <br />
         <div>
           <label>Email:</label>
           <input
@@ -82,16 +82,41 @@ const App = () => {
             {...register("email", {
               required: true,
               pattern: {
-                value: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                value:
+                  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
                 message: "Give a Proper Email Id EX: example@gmail.com",
               },
             })}
           />
-           {errors.email && <p className="error-msg">{errors.email.message}</p>}
+          {errors.email && <p className="error-msg">{errors.email.message}</p>}
         </div>
         <br />
 
-            
+        <div>
+          <label>Mobile Number:</label>
+          <input
+            type="tel"
+            className={errors.mNumber ? "input-error" : ""}
+            {...register("mNumber", {
+              required: true,
+              minLength: {
+                value: 10,
+                message: "Mobile number must be 10 digits",
+              },
+              maxLength: {
+                value: 10,
+                message: "Mobile number must be 10 digits",
+              },
+              pattern: {
+                value: /^[0-9]{10}$/,
+                message: "Invalid mobile number",
+              },
+            })}
+          />
+          {errors.mNumber && (
+            <p className="error-msg">{errors.mNumber.message}</p>
+          )}
+        </div>
 
         <button type="submit" disabled={isSubmitting}>
           {isSubmitting ? "Submitting" : "Submit"}
