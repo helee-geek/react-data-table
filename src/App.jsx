@@ -93,6 +93,26 @@ const App = () => {
         <br />
 
         <div>
+          <label>Password:</label>
+          <input
+            type="password"
+            className={errors.password ? "input-error" : ""}
+            {...register("password", {
+              required: true,
+              pattern: {
+                value:
+                  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                message:
+                  "Password must be at least 8 characters long, include an uppercase letter, a lowercase letter, a number, and a special character",
+              },
+            })}
+          />
+          {errors.password && (
+            <p className="error-msg">{errors.password.message}</p>
+          )}
+        </div>
+
+        <div>
           <label>Mobile Number:</label>
           <input
             type="tel"
