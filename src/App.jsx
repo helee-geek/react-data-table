@@ -168,7 +168,7 @@ const App = () => {
 
           {errors.title && <p className="error-msg">{errors.title.message}</p>}
         </div>
-
+        <br />
         <button type="submit" disabled={isSubmitting}>
           {isSubmitting ? "Submitting" : "Submit"}
         </button>
